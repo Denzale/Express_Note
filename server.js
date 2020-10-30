@@ -61,27 +61,12 @@ app.post("/api/notes", function (req, res) {
 //DELETES Notes.. having problems 
 app.delete("/api/notes/:id", function (req, res) {
     fs.readFile('./db/db.json', function (err, data) {
-        let oldNotes = JSON.parse(data); //oldNotes looks like this: [{noteobj1}, {noteobj2}...]
-
-        //Filter out the object you want to delete. Then writeFile with the filtered array.
-        /*
-        alright! I think I can leave you at this right? You'll need a callback that checks for the elements that
-        don't have the same id as req.params.id
-
-        let us know if you have another question!
-        */
+        let oldNotes = JSON.parse(data); 
         let filteredNotes = oldNotes.filter(user => user.id !== req.params.id)
-
-
-        //here? Yeah! Let me move ccomments around. i start out with this right? okay thank you david 
-        fs.writeFile('./db/db.json', JSON.stringify(filteredNotes),) //and we'll change this to the new variable.
+        fs.writeFile('./db/db.json', JSON.stringify(filteredNotes),) 
         if (err) throw err;
     })
 })
-
-
-//can i use the filter method? YES! Exactly!
-
 
 
 
